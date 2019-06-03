@@ -23,19 +23,6 @@ func TestEncryptDecrypt(t *testing.T) {
 	}
 }
 
-func TestEncryptDecryptString(t *testing.T) {
-	key := "b7a92c1e-83fe-11e9-83be-be1a02408b06"
-	data := "A boy fell in the mud"
-
-	enc := EncryptDecryptString(data, key)
-
-	plaintext := EncryptDecryptString(enc, key)
-
-	if plaintext != data {
-		t.Errorf("got %s, want %s", plaintext, data)
-	}
-}
-
 func BenchmarkEncryptDecrypt(b *testing.B) {
 	key := []byte("b7a92c1e-83fe-11e9-83be-be1a02408b06")
 	data := []byte("A boy fell in the mud")
@@ -45,17 +32,5 @@ func BenchmarkEncryptDecrypt(b *testing.B) {
 
 	for i := 0; i < b.N; i++ {
 		benchBytes = EncryptDecrypt(data, key)
-	}
-}
-
-func BenchmarkEncryptDecryptString(b *testing.B) {
-	key := "b7a92c1e-83fe-11e9-83be-be1a02408b06"
-	data := "A boy fell in the mud"
-
-	b.ReportAllocs()
-	b.ResetTimer()
-
-	for i := 0; i < b.N; i++ {
-		benchString = EncryptDecryptString(data, key)
 	}
 }

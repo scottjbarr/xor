@@ -15,14 +15,3 @@ func EncryptDecrypt(input, key []byte) []byte {
 
 	return output
 }
-
-// EncryptDecryptString behaves the same as EnvryptDecrypt, but with strings.
-func EncryptDecryptString(input, key string) string {
-	output := ""
-
-	for i := 0; i < len(input); i++ {
-		output += string(input[i] ^ key[i%len(key)])
-	}
-
-	return output
-}
